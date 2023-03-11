@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import {TodoForm} from './components/TodoForm';
 import { getData } from './service/getData.jsx'
-import { Route,Routes, BrowserRouter} from 'react-router-dom';
 
 export const App = () => {
     const data = getData();
