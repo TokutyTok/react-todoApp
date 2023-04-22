@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import {TodoForm} from './components/TodoForm';
+import {Button} from './components/Button';
 import { getData } from './service/getData.jsx'
 
 export const App = () => {
@@ -8,6 +9,7 @@ export const App = () => {
         <>
 
             <TodoForm input = {data}/>
+
             <div>
                 <ul>
                 <li>a</li>
@@ -16,8 +18,8 @@ export const App = () => {
                 </ul>
             </div>
             <div>
-                <button>完了</button>
-                <button>削除</button>
+                <Button end="end"/>
+                <Button delete="delete"/>
             </div>
         </>
         );
