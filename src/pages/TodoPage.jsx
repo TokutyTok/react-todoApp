@@ -1,18 +1,12 @@
 import { useRef, useState, useEffect } from 'react';
 import { Container, Box, TextField, Checkbox, IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
+import { TodoList } from '../components/TodoList';
 
 export const TodoPage = () => {
     const inputMessageRef = useRef(null);
-    const [inputMessage, setInputMessage] = useState(null);
-    const [isMessage, setIsMessage] = useState(false);
-
-    useEffect(() => {
-        if (inputMessage) {
-            setIsMessage(true);
-        }
-    }, [inputMessage]);
+    const todoListRef = useRef(null);
+    const [inputMessage, setInputMessage] = useState([]);
 
     return (
         <>
@@ -39,21 +33,15 @@ export const TodoPage = () => {
                         type='submit'
                         onClick={() => {
                             console.log('addButton:onClick');
-                            setInputMessage(inputMessageRef.current.value);
+                            setInputMessage([...inputMessage, inputMessageRef.current.value]);
                         }}
                     >
                         <AddIcon fontSize='inherit' />
                     </IconButton>
-                    <IconButton aria-label='delete' size='large'>
-                        <DeleteIcon fontSize='inherit' />
-                    </IconButton>
                 </Box>
-                {isMessage && (
-                    <Box>
-                        <Checkbox aria-label='OutputTodo' />
-                        <TextField id='output' name='outputMessage' value={inputMessage} label='' variant='standard' />
-                    </Box>
-                )}
+                <Box ref={todoListRef}>
+                    <TodoList message={inputMessage} setInputMessage={setInputMessage} />
+                </Box>
             </Container>
         </>
     );
