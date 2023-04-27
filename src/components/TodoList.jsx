@@ -1,26 +1,33 @@
-import { Container, Box, TextField, Checkbox, IconButton } from '@mui/material';
+import { TextField, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export const TodoList = (props) => {
-    const { message, setInputMessage } = props;
+    const { todoList, setTodoList } = props;
     return (
         <>
-            {message.map((value, index) => {
+            {todoList.map((todo, index) => {
                 return (
                     <div key={index}>
-                        <Checkbox aria-label='OutputTodo' />
                         <TextField
-                            id='output'
-                            name='outputMessage'
-                            value={value}
+                            id='outputTodo'
+                            label=''
+                            name='outputTodo'
+                            value={todo}
                             onChange={(e) => {
                                 console.log('TodoList:onChange');
-                                setInputMessage(message.map((value, i) => (index === i ? e.target.value : value)));
+                                setTodoList(todoList.map((todo, i) => (index === i ? e.target.value : todo)));
                             }}
-                            label=''
                             variant='standard'
                         />
-                        <IconButton aria-label='delete' size='large'>
+                        <IconButton
+                            aria-label='delete'
+                            size='large'
+                            type='submit'
+                            onClick={() => {
+                                console.log('deleteButton:onClick');
+                                setTodoList(todoList.filter((todo, i) => index !== i));
+                            }}
+                        >
                             <DeleteIcon fontSize='inherit' />
                         </IconButton>
                     </div>
