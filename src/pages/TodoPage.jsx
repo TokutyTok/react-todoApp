@@ -21,7 +21,7 @@ export const TodoPage = () => {
                         name='inputTodo'
                         value={todo}
                         onChange={(e) => {
-                            console.log('inputMessage:onChange');
+                            console.log('inputTodo:onChange');
                             setTodo(e.target.value);
                         }}
                         variant='outlined'
