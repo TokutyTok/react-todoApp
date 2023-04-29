@@ -1,10 +1,10 @@
-import { TextField, IconButton } from '@mui/material';
+import { Box, TextField, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export const TodoList = (props) => {
     const { todoList, setTodoList } = props;
     return (
-        <>
+        <Box>
             {todoList.map((todo, index) => {
                 return (
                     <div key={index}>
@@ -15,7 +15,9 @@ export const TodoList = (props) => {
                             value={todo}
                             onChange={(e) => {
                                 console.log('TodoList:onChange');
-                                setTodoList(todoList.map((todo, i) => (index === i ? e.target.value : todo)));
+                                setTodoList(
+                                    todoList.map((todo, i) => (index === i ? e.target.value : todo))
+                                );
                             }}
                             variant='standard'
                         />
@@ -33,6 +35,6 @@ export const TodoList = (props) => {
                     </div>
                 );
             })}
-        </>
+        </Box>
     );
 };
