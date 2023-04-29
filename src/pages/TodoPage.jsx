@@ -10,7 +10,7 @@ export const TodoPage = () => {
         <>
             <Container maxWidth='sm'>
                 <Box>
-                    <h1>TODO APP</h1>
+                    <h1>TODO LIST</h1>
                 </Box>
                 <TodoForm
                     todo={todo}
