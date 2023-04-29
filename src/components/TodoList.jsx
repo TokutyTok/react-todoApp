@@ -1,10 +1,10 @@
-import { Box, TextField, IconButton } from '@mui/material';
+import { Container, Box, TextField, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export const TodoList = (props) => {
     const { todoList, setTodoList } = props;
     return (
-        <Box>
+        <Container maxWidth='xs'>
             {todoList.map((todo, index) => {
                 return (
                     <div key={index}>
@@ -35,6 +35,6 @@ export const TodoList = (props) => {
                     </div>
                 );
             })}
-        </Box>
+        </Container>
     );
 };

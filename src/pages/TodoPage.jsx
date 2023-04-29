@@ -7,19 +7,12 @@ export const TodoPage = () => {
     const [todo, setTodo] = useState('');
     const [todoList, setTodoList] = useState([]);
     return (
-        <>
-            <Container maxWidth='sm'>
-                <Box>
-                    <h1>TODO LIST</h1>
-                </Box>
-                <TodoForm
-                    todo={todo}
-                    setTodo={setTodo}
-                    todoList={todoList}
-                    setTodoList={setTodoList}
-                />
-                <TodoList todoList={todoList} setTodoList={setTodoList} />
+        <Box>
+            <Container maxWidth='xs'>
+                <h1>TODO LIST</h1>
             </Container>
-        </>
+            <TodoForm todo={todo} setTodo={setTodo} todoList={todoList} setTodoList={setTodoList} />
+            <TodoList todoList={todoList} setTodoList={setTodoList} />
+        </Box>
     );
 };
