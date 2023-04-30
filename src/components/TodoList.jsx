@@ -1,4 +1,4 @@
-import { Container, Box, TextField, IconButton } from '@mui/material';
+import { Container, TextField, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export const TodoList = (props) => {
