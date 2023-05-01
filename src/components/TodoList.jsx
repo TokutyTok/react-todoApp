@@ -1,8 +1,10 @@
+import { useContext } from 'react';
+import { TodoContext } from '../context/TodoProvider';
 import { Container, TextField, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export const TodoList = (props) => {
-    const { todoList, setTodoList } = props;
+export const TodoList = () => {
+    const { todoList, setTodoList } = useContext(TodoContext);
     return (
         <Container maxWidth='xs'>
             {todoList.map((todo, index) => {

@@ -1,7 +1,9 @@
+import { useContext } from 'react';
+import { TodoContext } from '../context/TodoProvider';
 import { Container, TextField, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-export const TodoForm = (props) => {
-    const { todo, setTodo, todoList, setTodoList } = props;
+export const TodoForm = () => {
+    const { todo, setTodo, todoList, setTodoList } = useContext(TodoContext);
     return (
         <Container maxWidth='xs'>
             <TextField

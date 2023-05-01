@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { TodoPage } from './pages/TodoPage';
+import { TodoProvider } from './context/TodoProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<TodoPage />);
+root.render(
+    <TodoProvider>
+        <TodoPage />
+    </TodoProvider>
+);
