@@ -1,9 +1,9 @@
-import { Container, TextField, IconButton } from '@mui/material';
+import { Box, TextField, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 export const TodoForm = (props) => {
     const { todo, setTodo, todoList, setTodoList } = props;
     return (
-        <Container maxWidth='xs'>
+        <Box>
             <TextField
                 id='inputTodo'
                 label=''
@@ -27,6 +27,6 @@ export const TodoForm = (props) => {
             >
                 <AddIcon fontSize='inherit' />
             </IconButton>
-        </Container>
+        </Box>
     );
 };
