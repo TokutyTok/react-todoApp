@@ -1,12 +1,10 @@
-import { useContext } from 'react';
-import { TodoContext } from '../context/TodoProvider';
-import { Container, TextField, IconButton } from '@mui/material';
+import { Box, TextField, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export const TodoList = () => {
-    const { todoList, setTodoList } = useContext(TodoContext);
+export const TodoList = (props) => {
+    const { todoList, setTodoList } = props;
     return (
-        <Container maxWidth='xs'>
+        <Box>
             {todoList.map((todo, index) => {
                 return (
                     <div key={index}>
@@ -37,6 +35,6 @@ export const TodoList = () => {
                     </div>
                 );
             })}
-        </Container>
+        </Box>
     );
 };

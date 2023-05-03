@@ -1,15 +1,18 @@
-import { Container, Box } from '@mui/material';
+import { useContext } from 'react';
+import { TodoContext } from '../context/TodoProvider';
+import { Box, Typography } from '@mui/material';
 import { TodoForm } from '../components/TodoForm';
 import { TodoList } from '../components/TodoList';
 
-export const TodoOrganisms = () => {
+export const TodoOrganisms = (props) => {
+    const { todo, setTodo, todoList, setTodoList } = useContext(TodoContext);
     return (
         <Box>
-            <Container maxWidth='xs'>
-                <h1>TODO LIST</h1>
-            </Container>
-            <TodoForm />
-            <TodoList />
+            <Typography variant='h5' component='h1'>
+                {props.title}
+            </Typography>
+            <TodoForm todo={todo} setTodo={setTodo} todoList={todoList} setTodoList={setTodoList} />
+            <TodoList todoList={todoList} setTodoList={setTodoList} />
         </Box>
     );
 };

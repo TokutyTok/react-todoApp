@@ -1,5 +1,5 @@
 import { TodoOrganisms } from '../organisms/TodoOrganisms';
 
 export const TodoPage = () => {
-    return <TodoOrganisms />;
+    return <TodoOrganisms title={'TODO APP'} />;
 };
