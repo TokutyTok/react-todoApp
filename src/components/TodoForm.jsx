@@ -1,7 +1,7 @@
 import { Box, TextField, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 export const TodoForm = (props) => {
-    const { todo, setTodo, inputTodoList, setInputTodoList } = props;
+    const { todo, setTodo, todoList, setTodoList } = props;
     return (
         <Box
             sx={{
@@ -28,10 +28,13 @@ export const TodoForm = (props) => {
                 type='submit'
                 onClick={() => {
                     console.log('addButton:onClick');
-                    setInputTodoList([
-                        { title: 'NOT STARTED', todoList: [...inputTodoList[0].todoList, todo] },
-                        { title: 'STARTED', todoList: inputTodoList[1].todoList },
-                        { title: 'COMPLETION', todoList: inputTodoList[2].todoList },
+                    setTodoList([
+                        {
+                            statusName: 'NOT STARTED',
+                            taskList: [...todoList[0].taskList, todo],
+                        },
+                        { statusName: 'STARTED', taskList: todoList[1].taskList },
+                        { statusName: 'COMPLETION', taskList: todoList[2].taskList },
                     ]);
                 }}
             >

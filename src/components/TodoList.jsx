@@ -3,14 +3,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DoneIcon from '@mui/icons-material/Done';
 
 export const TodoList = (props) => {
-    const { title, todoList, inputTodoList, setInputTodoList } = props;
+    const { statusName, statusIndex, todoList, setTodoList } = props;
     return (
         <Box
             sx={{
                 width: 250,
             }}
         >
-            {todoList.map((todo, index) => {
+            {todoList[statusIndex].taskList.map((todo, index) => {
                 return (
                     <div key={index}>
                         <IconButton
@@ -19,42 +19,54 @@ export const TodoList = (props) => {
                             type='submit'
                             onClick={() => {
                                 console.log('moveButton:onClick');
-                                setInputTodoList([
+                                setTodoList([
                                     {
-                                        title: 'NOT STARTED',
-                                        todoList:
-                                            title === 'NOT STARTED'
-                                                ? todoList.filter((todo, i) => index !== i)
-                                                : title === 'STARTED'
-                                                ? inputTodoList[0].todoList
+                                        statusName: 'NOT STARTED',
+                                        taskList:
+                                            statusName === 'NOT STARTED'
+                                                ? todoList[statusIndex].taskList.filter(
+                                                      (todo, i) => index !== i
+                                                  )
+                                                : statusName === 'STARTED'
+                                                ? todoList[0].taskList
                                                 : [
-                                                      ...inputTodoList[0].todoList,
-                                                      todoList.filter((todo, i) => index === i),
+                                                      ...todoList[0].taskList,
+                                                      todoList[statusIndex].taskList.filter(
+                                                          (todo, i) => index === i
+                                                      ),
                                                   ],
                                     },
                                     {
-                                        title: 'STARTED',
-                                        todoList:
-                                            title === 'NOT STARTED'
+                                        statusName: 'STARTED',
+                                        taskList:
+                                            statusName === 'NOT STARTED'
                                                 ? [
-                                                      ...inputTodoList[1].todoList,
-                                                      todoList.filter((todo, i) => index === i),
+                                                      ...todoList[1].taskList,
+                                                      todoList[statusIndex].taskList.filter(
+                                                          (todo, i) => index === i
+                                                      ),
                                                   ]
-                                                : title === 'STARTED'
-                                                ? todoList.filter((todo, i) => index !== i)
-                                                : inputTodoList[1].todoList,
+                                                : statusName === 'STARTED'
+                                                ? todoList[statusIndex].taskList.filter(
+                                                      (todo, i) => index !== i
+                                                  )
+                                                : todoList[1].taskList,
                                     },
                                     {
-                                        title: 'COMPLETION',
-                                        todoList:
-                                            title === 'NOT STARTED'
-                                                ? inputTodoList[2].todoList
-                                                : title === 'STARTED'
+                                        statusName: 'COMPLETION',
+                                        taskList:
+                                            statusName === 'NOT STARTED'
+                                                ? todoList[2].taskList
+                                                : statusName === 'STARTED'
                                                 ? [
-                                                      ...inputTodoList[2].todoList,
-                                                      todoList.filter((todo, i) => index === i),
+                                                      ...todoList[2].taskList,
+                                                      todoList[statusIndex].taskList.filter(
+                                                          (todo, i) => index === i
+                                                      ),
                                                   ]
-                                                : todoList.filter((todo, i) => index !== i),
+                                                : todoList[statusIndex].taskList.filter(
+                                                      (todo, i) => index !== i
+                                                  ),
                                     },
                                 ]);
                             }}
@@ -70,33 +82,33 @@ export const TodoList = (props) => {
                             value={todo}
                             onChange={(e) => {
                                 console.log('TodoList:onChange');
-                                setInputTodoList([
+                                setTodoList([
                                     {
-                                        title: 'NOT STARTED',
-                                        todoList:
-                                            title === 'NOT STARTED'
-                                                ? todoList.map((todo, i) =>
+                                        statusName: 'NOT STARTED',
+                                        taskList:
+                                            statusName === 'NOT STARTED'
+                                                ? todoList[statusIndex].taskList.map((todo, i) =>
                                                       index === i ? e.target.value : todo
                                                   )
-                                                : inputTodoList[0].todoList,
+                                                : todoList[0].taskList,
                                     },
                                     {
-                                        title: 'STARTED',
-                                        todoList:
-                                            title === 'STARTED'
-                                                ? todoList.map((todo, i) =>
+                                        statusName: 'STARTED',
+                                        taskList:
+                                            statusName === 'STARTED'
+                                                ? todoList[statusIndex].taskList.map((todo, i) =>
                                                       index === i ? e.target.value : todo
                                                   )
-                                                : inputTodoList[1].todoList,
+                                                : todoList[1].taskList,
                                     },
                                     {
-                                        title: 'COMPLETION',
-                                        todoList:
-                                            title === 'COMPLETION'
-                                                ? todoList.map((todo, i) =>
+                                        statusName: 'COMPLETION',
+                                        taskList:
+                                            statusName === 'COMPLETION'
+                                                ? todoList[statusIndex].taskList.map((todo, i) =>
                                                       index === i ? e.target.value : todo
                                                   )
-                                                : inputTodoList[2].todoList,
+                                                : todoList[2].taskList,
                                     },
                                 ]);
                             }}
@@ -108,27 +120,33 @@ export const TodoList = (props) => {
                             type='submit'
                             onClick={() => {
                                 console.log('deleteButton:onClick');
-                                setInputTodoList([
+                                setTodoList([
                                     {
-                                        title: 'NOT STARTED',
-                                        todoList:
-                                            title === 'NOT STARTED'
-                                                ? todoList.filter((todo, i) => index !== i)
-                                                : inputTodoList[0].todoList,
+                                        statusName: 'NOT STARTED',
+                                        taskList:
+                                            statusName === 'NOT STARTED'
+                                                ? todoList[statusIndex].taskList.filter(
+                                                      (todo, i) => index !== i
+                                                  )
+                                                : todoList[0].taskList,
                                     },
                                     {
-                                        title: 'STARTED',
-                                        todoList:
-                                            title === 'STARTED'
-                                                ? todoList.filter((todo, i) => index !== i)
-                                                : inputTodoList[1].todoList,
+                                        statusName: 'STARTED',
+                                        taskList:
+                                            statusName === 'STARTED'
+                                                ? todoList[statusIndex].taskList.filter(
+                                                      (todo, i) => index !== i
+                                                  )
+                                                : todoList[1].taskList,
                                     },
                                     {
-                                        title: 'COMPLETION',
-                                        todoList:
-                                            title === 'COMPLETION'
-                                                ? todoList.filter((todo, i) => index !== i)
-                                                : inputTodoList[2].todoList,
+                                        statusName: 'COMPLETION',
+                                        taskList:
+                                            statusName === 'COMPLETION'
+                                                ? todoList[statusIndex].taskList.filter(
+                                                      (todo, i) => index !== i
+                                                  )
+                                                : todoList[2].taskList,
                                     },
                                 ]);
                             }}

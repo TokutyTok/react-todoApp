@@ -4,7 +4,7 @@ import { Typography, Grid } from '@mui/material';
 import { TodoForm } from '../components/TodoForm';
 
 export const TodoFormOrganisms = () => {
-    const { todo, setTodo, inputTodoList, setInputTodoList } = useContext(TodoContext);
+    const { todo, setTodo, todoList, setTodoList } = useContext(TodoContext);
     return (
         <Grid container>
             <Grid item lg={4}>
@@ -14,8 +14,8 @@ export const TodoFormOrganisms = () => {
                 <TodoForm
                     todo={todo}
                     setTodo={setTodo}
-                    inputTodoList={inputTodoList}
-                    setInputTodoList={setInputTodoList}
+                    todoList={todoList}
+                    setTodoList={setTodoList}
                 />
             </Grid>
         </Grid>
