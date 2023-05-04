@@ -4,27 +4,27 @@ import { Typography, Grid } from '@mui/material';
 import { TodoList } from '../components/TodoList';
 
 export const TodoListOrganisms = () => {
-    const { todoList, setTodoList } = useContext(TodoContext);
+    const { inputTodoList, setInputTodoList } = useContext(TodoContext);
+    console.log(inputTodoList);
     return (
         <Grid container>
-            <Grid item lg={4}>
-                <Typography variant='h6' component='h1'>
-                    {'NOT START'}
-                </Typography>
-                <TodoList todoList={todoList} setTodoList={setTodoList} />
-            </Grid>
-            <Grid item lg={4}>
-                <Typography variant='h6' component='h1'>
-                    {'STARTED'}
-                </Typography>
-                <TodoList todoList={todoList} setTodoList={setTodoList} />
-            </Grid>
-            <Grid item lg={4}>
-                <Typography variant='h6' component='h1'>
-                    {'COMPLETION'}
-                </Typography>
-                <TodoList todoList={todoList} setTodoList={setTodoList} />
-            </Grid>
+            {inputTodoList.map((value, index) => {
+                return (
+                    <div key={index}>
+                        <Grid item lg={4}>
+                            <Typography variant='h6' component='h1'>
+                                {value.title}
+                            </Typography>
+                            <TodoList
+                                title={value.title}
+                                todoList={value.todoList}
+                                inputTodoList={inputTodoList}
+                                setInputTodoList={setInputTodoList}
+                            />
+                        </Grid>
+                    </div>
+                );
+            })}
         </Grid>
     );
 };

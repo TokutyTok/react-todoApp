@@ -3,7 +3,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DoneIcon from '@mui/icons-material/Done';
 
 export const TodoList = (props) => {
-    const { todoList, setTodoList } = props;
+    const { title, todoList, inputTodoList, setInputTodoList } = props;
     return (
         <Box
             sx={{
@@ -19,7 +19,44 @@ export const TodoList = (props) => {
                             type='submit'
                             onClick={() => {
                                 console.log('moveButton:onClick');
-                                setTodoList(todoList.filter((todo, i) => index !== i));
+                                setInputTodoList([
+                                    {
+                                        title: 'NOT STARTED',
+                                        todoList:
+                                            title === 'NOT STARTED'
+                                                ? todoList.filter((todo, i) => index !== i)
+                                                : title === 'STARTED'
+                                                ? inputTodoList[0].todoList
+                                                : [
+                                                      ...inputTodoList[0].todoList,
+                                                      todoList.filter((todo, i) => index === i),
+                                                  ],
+                                    },
+                                    {
+                                        title: 'STARTED',
+                                        todoList:
+                                            title === 'NOT STARTED'
+                                                ? [
+                                                      ...inputTodoList[1].todoList,
+                                                      todoList.filter((todo, i) => index === i),
+                                                  ]
+                                                : title === 'STARTED'
+                                                ? todoList.filter((todo, i) => index !== i)
+                                                : inputTodoList[1].todoList,
+                                    },
+                                    {
+                                        title: 'COMPLETION',
+                                        todoList:
+                                            title === 'NOT STARTED'
+                                                ? inputTodoList[2].todoList
+                                                : title === 'STARTED'
+                                                ? [
+                                                      ...inputTodoList[2].todoList,
+                                                      todoList.filter((todo, i) => index === i),
+                                                  ]
+                                                : todoList.filter((todo, i) => index !== i),
+                                    },
+                                ]);
                             }}
                         >
                             <DoneIcon sx={{ fontSize: 18 }} />
@@ -33,9 +70,35 @@ export const TodoList = (props) => {
                             value={todo}
                             onChange={(e) => {
                                 console.log('TodoList:onChange');
-                                setTodoList(
-                                    todoList.map((todo, i) => (index === i ? e.target.value : todo))
-                                );
+                                setInputTodoList([
+                                    {
+                                        title: 'NOT STARTED',
+                                        todoList:
+                                            title === 'NOT STARTED'
+                                                ? todoList.map((todo, i) =>
+                                                      index === i ? e.target.value : todo
+                                                  )
+                                                : inputTodoList[0].todoList,
+                                    },
+                                    {
+                                        title: 'STARTED',
+                                        todoList:
+                                            title === 'STARTED'
+                                                ? todoList.map((todo, i) =>
+                                                      index === i ? e.target.value : todo
+                                                  )
+                                                : inputTodoList[1].todoList,
+                                    },
+                                    {
+                                        title: 'COMPLETION',
+                                        todoList:
+                                            title === 'COMPLETION'
+                                                ? todoList.map((todo, i) =>
+                                                      index === i ? e.target.value : todo
+                                                  )
+                                                : inputTodoList[2].todoList,
+                                    },
+                                ]);
                             }}
                             variant='standard'
                         />
@@ -45,7 +108,29 @@ export const TodoList = (props) => {
                             type='submit'
                             onClick={() => {
                                 console.log('deleteButton:onClick');
-                                setTodoList(todoList.filter((todo, i) => index !== i));
+                                setInputTodoList([
+                                    {
+                                        title: 'NOT STARTED',
+                                        todoList:
+                                            title === 'NOT STARTED'
+                                                ? todoList.filter((todo, i) => index !== i)
+                                                : inputTodoList[0].todoList,
+                                    },
+                                    {
+                                        title: 'STARTED',
+                                        todoList:
+                                            title === 'STARTED'
+                                                ? todoList.filter((todo, i) => index !== i)
+                                                : inputTodoList[1].todoList,
+                                    },
+                                    {
+                                        title: 'COMPLETION',
+                                        todoList:
+                                            title === 'COMPLETION'
+                                                ? todoList.filter((todo, i) => index !== i)
+                                                : inputTodoList[2].todoList,
+                                    },
+                                ]);
                             }}
                         >
                             <DeleteIcon sx={{ fontSize: 20 }} />
