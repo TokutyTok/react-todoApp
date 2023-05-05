@@ -28,14 +28,13 @@ export const TodoForm = (props) => {
                 type='submit'
                 onClick={() => {
                     console.log('addButton:onClick');
-                    setTodoList([
-                        {
-                            statusName: 'NOT STARTED',
-                            taskList: [...todoList[0].taskList, todo],
-                        },
-                        { statusName: 'STARTED', taskList: todoList[1].taskList },
-                        { statusName: 'COMPLETION', taskList: todoList[2].taskList },
-                    ]);
+                    setTodoList(
+                        todoList.map((value) => {
+                            return value.statusName === 'NOT STARTED'
+                                ? { statusName: 'NOT STARTED', taskList: [...value.taskList, todo] }
+                                : value;
+                        })
+                    );
                 }}
             >
                 <AddIcon sx={{ fontSize: 18 }} />

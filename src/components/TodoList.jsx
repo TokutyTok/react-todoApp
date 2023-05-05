@@ -17,58 +17,36 @@ export const TodoList = (props) => {
                             aria-label='move'
                             size='large'
                             type='submit'
-                            onClick={() => {
+                            onClick={(e) => {
                                 console.log('moveButton:onClick');
-                                setTodoList([
-                                    {
-                                        statusName: 'NOT STARTED',
-                                        taskList:
-                                            statusName === 'NOT STARTED'
-                                                ? todoList[statusIndex].taskList.filter(
-                                                      (todo, i) => index !== i
-                                                  )
-                                                : statusName === 'STARTED'
-                                                ? todoList[0].taskList
-                                                : [
-                                                      ...todoList[0].taskList,
-                                                      todoList[statusIndex].taskList.filter(
-                                                          (todo, i) => index === i
-                                                      ),
-                                                  ],
-                                    },
-                                    {
-                                        statusName: 'STARTED',
-                                        taskList:
-                                            statusName === 'NOT STARTED'
-                                                ? [
-                                                      ...todoList[1].taskList,
-                                                      todoList[statusIndex].taskList.filter(
-                                                          (todo, i) => index === i
-                                                      ),
-                                                  ]
-                                                : statusName === 'STARTED'
-                                                ? todoList[statusIndex].taskList.filter(
-                                                      (todo, i) => index !== i
-                                                  )
-                                                : todoList[1].taskList,
-                                    },
-                                    {
-                                        statusName: 'COMPLETION',
-                                        taskList:
-                                            statusName === 'NOT STARTED'
-                                                ? todoList[2].taskList
-                                                : statusName === 'STARTED'
-                                                ? [
-                                                      ...todoList[2].taskList,
-                                                      todoList[statusIndex].taskList.filter(
-                                                          (todo, i) => index === i
-                                                      ),
-                                                  ]
-                                                : todoList[statusIndex].taskList.filter(
-                                                      (todo, i) => index !== i
-                                                  ),
-                                    },
-                                ]);
+
+                                let copyTodoList = Object.assign(
+                                    [],
+                                    JSON.parse(JSON.stringify(todoList))
+                                );
+
+                                if (statusName === 'NOT STARTED') {
+                                    copyTodoList[statusIndex].taskList.splice(index, 1);
+                                    copyTodoList[1].taskList.unshift(
+                                        todoList[statusIndex].taskList[index]
+                                    );
+                                }
+
+                                if (statusName === 'STARTED') {
+                                    copyTodoList[statusIndex].taskList.splice(index, 1);
+                                    copyTodoList[2].taskList.unshift(
+                                        todoList[statusIndex].taskList[index]
+                                    );
+                                }
+
+                                if (statusName === 'COMPLETION') {
+                                    copyTodoList[statusIndex].taskList.splice(index, 1);
+                                    copyTodoList[0].taskList.unshift(
+                                        todoList[statusIndex].taskList[index]
+                                    );
+                                }
+
+                                setTodoList(copyTodoList);
                             }}
                         >
                             <DoneIcon sx={{ fontSize: 18 }} />
@@ -82,35 +60,25 @@ export const TodoList = (props) => {
                             value={todo}
                             onChange={(e) => {
                                 console.log('TodoList:onChange');
-                                setTodoList([
-                                    {
-                                        statusName: 'NOT STARTED',
-                                        taskList:
-                                            statusName === 'NOT STARTED'
-                                                ? todoList[statusIndex].taskList.map((todo, i) =>
-                                                      index === i ? e.target.value : todo
-                                                  )
-                                                : todoList[0].taskList,
-                                    },
-                                    {
-                                        statusName: 'STARTED',
-                                        taskList:
-                                            statusName === 'STARTED'
-                                                ? todoList[statusIndex].taskList.map((todo, i) =>
-                                                      index === i ? e.target.value : todo
-                                                  )
-                                                : todoList[1].taskList,
-                                    },
-                                    {
-                                        statusName: 'COMPLETION',
-                                        taskList:
-                                            statusName === 'COMPLETION'
-                                                ? todoList[statusIndex].taskList.map((todo, i) =>
-                                                      index === i ? e.target.value : todo
-                                                  )
-                                                : todoList[2].taskList,
-                                    },
-                                ]);
+
+                                let copyTodoList = Object.assign(
+                                    [],
+                                    JSON.parse(JSON.stringify(todoList))
+                                );
+
+                                if (statusName === 'NOT STARTED') {
+                                    copyTodoList[statusIndex].taskList[index] = e.target.value;
+                                }
+
+                                if (statusName === 'STARTED') {
+                                    copyTodoList[statusIndex].taskList[index] = e.target.value;
+                                }
+
+                                if (statusName === 'COMPLETION') {
+                                    copyTodoList[statusIndex].taskList[index] = e.target.value;
+                                }
+
+                                setTodoList(copyTodoList);
                             }}
                             variant='standard'
                         />
@@ -120,35 +88,25 @@ export const TodoList = (props) => {
                             type='submit'
                             onClick={() => {
                                 console.log('deleteButton:onClick');
-                                setTodoList([
-                                    {
-                                        statusName: 'NOT STARTED',
-                                        taskList:
-                                            statusName === 'NOT STARTED'
-                                                ? todoList[statusIndex].taskList.filter(
-                                                      (todo, i) => index !== i
-                                                  )
-                                                : todoList[0].taskList,
-                                    },
-                                    {
-                                        statusName: 'STARTED',
-                                        taskList:
-                                            statusName === 'STARTED'
-                                                ? todoList[statusIndex].taskList.filter(
-                                                      (todo, i) => index !== i
-                                                  )
-                                                : todoList[1].taskList,
-                                    },
-                                    {
-                                        statusName: 'COMPLETION',
-                                        taskList:
-                                            statusName === 'COMPLETION'
-                                                ? todoList[statusIndex].taskList.filter(
-                                                      (todo, i) => index !== i
-                                                  )
-                                                : todoList[2].taskList,
-                                    },
-                                ]);
+
+                                let copyTodoList = Object.assign(
+                                    [],
+                                    JSON.parse(JSON.stringify(todoList))
+                                );
+
+                                if (statusName === 'NOT STARTED') {
+                                    copyTodoList[statusIndex].taskList.splice(index, 1);
+                                }
+
+                                if (statusName === 'STARTED') {
+                                    copyTodoList[statusIndex].taskList.splice(index, 1);
+                                }
+
+                                if (statusName === 'COMPLETION') {
+                                    copyTodoList[statusIndex].taskList.splice(index, 1);
+                                }
+
+                                setTodoList(copyTodoList);
                             }}
                         >
                             <DeleteIcon sx={{ fontSize: 20 }} />
