@@ -1,5 +1,11 @@
-import { TodoOrganisms } from '../organisms/TodoOrganisms';
+import { TodoFormOrganisms } from '../organisms/TodoFormOrganisms';
+import { TodoListOrganisms } from '../organisms/TodoListOrganisms';
 
 export const TodoPage = () => {
-    return <TodoOrganisms title={'TODO APP'} />;
+    return (
+        <>
+            <TodoFormOrganisms />
+            <TodoListOrganisms />
+        </>
+    );
 };
