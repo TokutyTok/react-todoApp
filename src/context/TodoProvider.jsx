@@ -4,7 +4,7 @@ export const TodoProvider = ({ children }) => {
     const [todo, setTodo] = useState('');
     const [todoList, setTodoList] = useState([
         { statusName: 'NOT STARTED', taskList: [] },
-        { statusName: 'STARTED', taskList: [] },
+        { statusName: 'START', taskList: [] },
         { statusName: 'COMPLETION', taskList: [] },
     ]);
     return (

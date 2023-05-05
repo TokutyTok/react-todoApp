@@ -32,7 +32,7 @@ export const TodoList = (props) => {
                                     );
                                 }
 
-                                if (statusName === 'STARTED') {
+                                if (statusName === 'START') {
                                     copyTodoList[statusIndex].taskList.splice(index, 1);
                                     copyTodoList[2].taskList.unshift(
                                         todoList[statusIndex].taskList[index]
@@ -70,7 +70,7 @@ export const TodoList = (props) => {
                                     copyTodoList[statusIndex].taskList[index] = e.target.value;
                                 }
 
-                                if (statusName === 'STARTED') {
+                                if (statusName === 'START') {
                                     copyTodoList[statusIndex].taskList[index] = e.target.value;
                                 }
 
@@ -98,7 +98,7 @@ export const TodoList = (props) => {
                                     copyTodoList[statusIndex].taskList.splice(index, 1);
                                 }
 
-                                if (statusName === 'STARTED') {
+                                if (statusName === 'START') {
                                     copyTodoList[statusIndex].taskList.splice(index, 1);
                                 }
 
